@@ -1,3 +1,5 @@
+# Note: This version is corrected but takes a long time
+# see wildcard_matching_imp.py
 
 def isMatch(s,p):
     if len(s) != len(p):
