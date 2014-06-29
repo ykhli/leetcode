@@ -1,0 +1,48 @@
+
+def isMatch(s,p):
+    if len(s) != len(p):
+        # length not the same, no wild card -> false
+        if '*' not in p:
+            return False
+        else:
+            return findWildPattern(s,p)
+    else:
+        # length the same
+        if '*' not in p and '?' not in p:
+            # when there is no wildcards, two strings are the same
+            if s == p:
+                return True
+            else:
+                return False
+        else:
+            # wildcards
+            for i in range(0,len(p)):
+                if p[i] == '?' or p[i] == '*':
+                    continue
+                if p[i] != s[i]:
+                    return False
+
+        
+
+
+
+def findWildPattern(s, p):
+    patterns = p.split('*')
+    index = 0
+    while len(patterns) > 0:
+        if len(s) == 0:
+            return False
+
+        p = patterns.pop(0)
+        if p in s:
+            index = s.index(p)
+            # found p in string
+            s = s[index+1:]
+        else:
+            # can't find p in string
+            return False
+    return True
+
+
+
+print isMatch('aa','a*')
